@@ -14,14 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    iofile.cpp \
     background.cpp \
-    stickman.cpp
+    stickman.cpp \
+    iofile.cpp
 
 HEADERS  += dialog.h \
-    iofile.h \
     background.h \
-    stickman.h
+    stickman.h \
+    iofile.h
 
 FORMS    += dialog.ui
 

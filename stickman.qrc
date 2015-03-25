@@ -1,9 +1,6 @@
 <RCC>
     <qresource prefix="/Images">
         <file>bg_img.jpg</file>
-        <file>bg_img2.jpg</file>
-        <file>mario_1.jpeg</file>
-        <file>mario.png</file>
         <file>mario1.png</file>
         <file>mario2.png</file>
         <file>mario3.png</file>
@@ -13,6 +10,6 @@
         <file>mario7.png</file>
     </qresource>
     <qresource prefix="/">
-        <file>bg_img.jpg</file>
+        <file>config.ini</file>
     </qresource>
 </RCC>

@@ -2,8 +2,10 @@
 #define IOFILE_H
 
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <map>
+#include <string>
 
 class IOFile
 {

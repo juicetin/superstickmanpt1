@@ -1,12 +1,13 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
+#include "background.h"
+#include "stickman.h"
+//#include "iofile.h"
 #include <QDialog>
 #include <QImage>
 #include <QTimer>
 #include <QPainter>
-#include "background.h"
-#include "stickman.h"
 #include <QPixmap>
 #include <QLabel>
 #include <QImage>
@@ -36,6 +37,7 @@ private:
     QPixmap m_bg_img;
     QPixmap m_stickman_anim[7];
     Stickman m_stickman;
+//    IOFile m_config;
     int m_counter;
 };
 

@@ -1,8 +1,5 @@
 #include "iofile.h"
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <map>
+
 
 IOFile::IOFile(const char *fileName, std::map<std::string, std::string> config) : m_fileName(fileName)
 {
@@ -42,14 +39,16 @@ void IOFile::processLines (std::string *lines, int numberOfLines, std::map<std::
         std::string key = lines[i].substr(0, lines[i].find("="));
         std::string value = lines[i].substr(lines[i].find("=")+1, lines[i].length()-1);
         config.insert(std::pair<std::string, std::string> (key, value));
+
+        std::cout << config.find(key)-> second << std::endl;
     }
-
-
 }
 
 std::string& getElement(std::string section, std::string key)
 {
-
+    //Placeholder
+    std::string a;
+    return a;
 }
 
 IOFile::~IOFile()
