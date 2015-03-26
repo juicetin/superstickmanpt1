@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         dialog.cpp \
     background.cpp \
     stickman.cpp \
-    settings.cpp
+    settings.cpp \
+    constants.cpp
 
 HEADERS  += dialog.h \
     background.h \
     stickman.h \
-    settings.h
+    settings.h \
+    constants.h
 
 FORMS    += dialog.ui
 

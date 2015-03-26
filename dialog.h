@@ -4,7 +4,11 @@
 #include "background.h"
 #include "stickman.h"
 #include "settings.h"
-//#include "iofile.h"
+#include "ui_dialog.h"
+#include "stickman.h"
+#include "settings.h"
+#include "constants.h"
+
 #include <QDialog>
 #include <QImage>
 #include <QTimer>

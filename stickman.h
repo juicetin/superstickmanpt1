@@ -10,11 +10,7 @@
 #include <string>
 
 #include "settings.h"
-
-#define SMALL 0
-#define NORMAL 1
-#define LARGE 2
-#define GIANT 3
+#include "constants.h"
 
 class Stickman
 {

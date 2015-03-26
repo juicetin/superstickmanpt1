@@ -9,6 +9,7 @@
 #include <cstdlib>
 
 #include "settings.h"
+#include "constants.h"
 
 class Background
 {

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <map>
 
+//#include "constants.h"
+
 class Settings
 {
 public:
