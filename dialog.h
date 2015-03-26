@@ -3,6 +3,7 @@
 
 #include "background.h"
 #include "stickman.h"
+#include "settings.h"
 //#include "iofile.h"
 #include <QDialog>
 #include <QImage>
@@ -33,11 +34,13 @@ protected:
 
 private:
     Ui::Dialog *ui;
+    
     Background m_background;
+    Settings * m_settings;
+    Stickman m_stickman;
+   	
     QPixmap m_bg_img;
     QPixmap m_stickman_anim[7];
-    Stickman m_stickman;
-//    IOFile m_config;
     int m_counter;
 };
 

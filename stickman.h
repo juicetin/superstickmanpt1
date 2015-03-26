@@ -7,6 +7,9 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <string>
+
+#include "settings.h"
 
 #define SMALL 0
 #define NORMAL 1
@@ -20,7 +23,7 @@ public:
 
     ~Stickman();
 
-    void render(QPainter &painter, unsigned int time, QPixmap stickman_anim[]);
+    void render(QPainter &painter, unsigned int time, QPixmap stickman_anim[], Settings * settings);
 
     void setBackground(const QPixmap &pixmap);
 

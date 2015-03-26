@@ -1,7 +1,8 @@
 #include "dialog.h"
-#include <QApplication>
 #include "iofile.h"
+#include "settings.h"
 
+#include <QApplication>
 #include <QImage>
 #include <QLabel>
 
@@ -9,10 +10,6 @@
 
 int main(int argc, char *argv[])
 {
-    std::map<std::string, std::string> config;
-    IOFile file("config.ini", config);
-    std::cout << config.find("size") -> second << std::endl;
-
     QApplication a(argc, argv);
     Dialog w;
     w.show();

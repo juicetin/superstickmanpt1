@@ -1,8 +1,8 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include "stickman.h"
-
-std::map<std::string, std::string> config;
+#include "settings.h"
+#include "iofile.h"
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -10,7 +10,6 @@ Dialog::Dialog(QWidget *parent) :
     m_background(0),
     m_stickman(0),
     m_counter(0)
-//    m_config(":/config.ini", config)
 {
     ui->setupUi(this);
     this->setFixedSize(1000,600);
@@ -18,8 +17,16 @@ Dialog::Dialog(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
     timer->start(32);
 
-    //Load background image - CONFIG VARIABLE
-    m_bg_img.load(":/Images/bg_img.jpg");
+    //Store config variables in a map as part of a Settings class
+    std::map<std::string, std::string> config;
+    m_settings = new Settings("config.ini", config);
+
+    //Load background image - CONFIG VARIABLE (issues with using resources...)
+    std::string bg_img_path = ":/Images/";
+    std::string path = m_settings->getElement("bg_img");
+    bg_img_path.append(path.substr(1, path.length()-2));
+     m_bg_img.load(bg_img_path.c_str());
+     std::cout << bg_img_path << std::endl;
 
     //Load stickman sprites
     for (int i = 0; i < 7; ++i)
@@ -40,11 +47,9 @@ void Dialog::nextFrame()
 void Dialog::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    m_background.render(painter, m_counter, m_bg_img);
-    m_stickman.render(painter, m_counter, m_stickman_anim);
+    m_background.render(painter, m_counter, m_bg_img, m_settings);
+    m_stickman.render(painter, m_counter, m_stickman_anim, m_settings);
     m_counter++;
-
-//    std::cout << config.find("size") -> second << std::endl;
 }
 
 Dialog::~Dialog()

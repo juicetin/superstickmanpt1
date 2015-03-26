@@ -9,7 +9,7 @@
         <file>mario6.png</file>
         <file>mario7.png</file>
     </qresource>
-    <qresource prefix="/">
+    <qresource prefix="/Settings">
         <file>config.ini</file>
     </qresource>
 </RCC>
