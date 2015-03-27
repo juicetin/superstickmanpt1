@@ -8,7 +8,7 @@ Dialog::Dialog(QWidget *parent) :
     m_counter(0)
 {
     ui->setupUi(this);
-    this->setFixedSize(1000,600);
+
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(nextFrame()));
     timer->start(32);
@@ -16,6 +16,10 @@ Dialog::Dialog(QWidget *parent) :
     //Store config variables in a map as part of a Settings class
     std::map<std::string, std::string> config;
     m_settings = new Settings(config_file, config);
+
+    int height = strtol(m_settings->getElement("window_height").c_str(),0,10);
+    int width = strtol(m_settings->getElement("window_width").c_str(),0,10);
+    this->setFixedSize(width,height);
 
     //Load background image - CONFIG VARIABLE (issues with using resources...)
     std::string bg_img_path = ":/Images/";

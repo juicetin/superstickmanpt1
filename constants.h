@@ -3,7 +3,7 @@
 
 extern const char * config_file;
 extern const char * settings_background_tag;
-extern const char * size_tiny;
+extern const char * size_small;
 extern const char * size_normal;
 extern const char * size_large;
 extern const char * size_giant;
