@@ -2,11 +2,11 @@
 
 void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_anim[], Settings * settings)
 {
-    int height = strtol(settings->getElement(config_window_height).c_str(),0,10);
+    int height = std::atoi(settings->getElement(config_window_height).c_str());
 
     std::string size = settings->getElement(size_tag); //CONFIG VARIABLE
 
-    int start_pos = strtol(settings->getElement(stickman_start_x).c_str(),0,10);    //CONFIG VARIABLE
+    int start_pos = std::atoi(settings->getElement(stickman_start_x).c_str());  //CONFIG VARIABLE
 
     int xcoord = start_pos;
     int ycoord;
@@ -26,15 +26,15 @@ void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_ani
 
     else if (strcmp(size.c_str(), size_normal) == 0)
     {
-        extra_size = height/30;
-        ycoord = base_dimens - extra_size;
+        extra_size = height/25;
+        ycoord = base_y - extra_size;
         dimens = base_dimens + extra_size;
     }
 
     else if (strcmp(size.c_str(), size_large) == 0)
     {
-        extra_size = height/15;
-        ycoord = base_dimens - extra_size;
+        extra_size = height/10;
+        ycoord = base_y - extra_size;
         dimens = base_dimens + extra_size;
     }
 
@@ -45,7 +45,7 @@ void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_ani
         dimens = base_dimens + extra_size;
     }
 
-    int velocity = strtol(settings->getElement(stickman_start_v).c_str(),0,10);    //CONFIG VARIABLE Uglier solution than std::stoi. Qtcreator is missing it...
+    int velocity = std::atoi(settings->getElement(stickman_start_v).c_str());    //CONFIG VARIABLE
     int chsprite_every_n_frames = 7-velocity/2;
     int frames_per_anim = 6;
 
@@ -54,7 +54,7 @@ void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_ani
 
 void Stickman::loadSprites(QPixmap * stickman_anim, Settings * settings)
 {
-    int size = strtol(settings->getElement(stickman_anim_length).c_str(),0,10);
+    int size = std::atoi(settings->getElement(stickman_anim_length).c_str());
 
     for (int i = 0; i < size; ++i)
     {

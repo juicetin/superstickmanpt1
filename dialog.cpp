@@ -16,7 +16,7 @@ Dialog::Dialog(QWidget *parent) :
     std::map<std::string, std::string> config;
     m_settings = new Settings(config_file, config);
 
-    //Set size of game window - weird use of stoi due to lacking stoi function on my home machine
+    //Set size of game window
     this->setFixedSize(std::atoi(m_settings->getElement(config_window_width).c_str()),
                        std::atoi(m_settings->getElement(config_window_height).c_str()));
 
