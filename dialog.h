@@ -8,6 +8,7 @@
 #include "stickman.h"
 #include "settings.h"
 #include "constants.h"
+#include "gamemap.h"
 
 #include <QDialog>
 #include <QImage>
@@ -38,14 +39,10 @@ protected:
 
 private:
     Ui::Dialog *ui;
-    
-    Background m_background;
     Settings * m_settings;
-    Stickman m_stickman;
-   	
-    QPixmap m_bg_img;
-    QPixmap m_stickman_anim[7];
+    GameMap m_map;
     int m_counter;
+
 };
 
 #endif // DIALOG_H

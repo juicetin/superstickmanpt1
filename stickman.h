@@ -15,16 +15,16 @@
 class Stickman
 {
 public:
-    Stickman(int time) : m_time(time) {}
-
+    Stickman() {}
     ~Stickman();
 
     void render(QPainter &painter, unsigned int time, QPixmap stickman_anim[], Settings * settings);
 
     void setBackground(const QPixmap &pixmap);
 
+    void loadSprites(QPixmap * stickman_anim, Settings * settings);
+
 private:
-    Stickman();
     int m_time;
 };
 

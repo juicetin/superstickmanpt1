@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <map>
+#include <QMessageBox>
 
 //#include "constants.h"
 
@@ -17,6 +18,7 @@ public:
     int numberOfLines(std::string fileName);
     void processLines(std::string * lines, int numberOfLines);
     std::string& getElement(std::string key);
+    int stoi(std::string string);
 
 private:
     std::string m_file_path;

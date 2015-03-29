@@ -3,8 +3,7 @@
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
-    m_background(0),
-    m_stickman(0),
+
     m_counter(0)
 {
     ui->setupUi(this);
@@ -17,24 +16,27 @@ Dialog::Dialog(QWidget *parent) :
     std::map<std::string, std::string> config;
     m_settings = new Settings(config_file, config);
 
-    int height = strtol(m_settings->getElement("window_height").c_str(),0,10);
-    int width = strtol(m_settings->getElement("window_width").c_str(),0,10);
-    this->setFixedSize(width,height);
+    //Set size of game window - weird use of stoi due to lacking stoi function on my home machine
+    this->setFixedSize(m_settings->stoi(m_settings->getElement(config_window_width)),
+                       m_settings->stoi(m_settings->getElement(config_window_height)));
 
-    //Load background image - CONFIG VARIABLE (issues with using resources...)
-    std::string bg_img_path = ":/Images/";
-    bg_img_path.append(m_settings->getElement(settings_background_tag));
-    m_bg_img.load(bg_img_path.c_str());
+    //Create game map and objects
+    Background background;
+    Stickman stickman;
+    QPixmap bg_img;
+    QPixmap * stickman_animations;
+    stickman_animations = (QPixmap*)calloc(m_settings->
+                                           stoi(m_settings->getElement(stickman_anim_length)), sizeof(QPixmap));
 
-    //Load stickman sprites
-    for (int i = 0; i < 7; ++i)
-    {
-        std::stringstream mario_frame;
-        mario_frame << i+1;
-        std::string mario_file;
-        mario_file.append(image_resources).append("/mario").append(mario_frame.str()).append(".png");
-        m_stickman_anim[i].load(mario_file.c_str());
-    }
+    m_map = GameMap::Builder().setBackground(background).
+            setStickman(stickman).
+            setBackgroundImage(bg_img).
+            setStickmanAnimations(stickman_animations).
+            build();
+
+    //Load image resources
+    stickman.loadSprites(stickman_animations, m_settings);
+    m_map.loadBackgroundImage(m_settings);
 }
 
 void Dialog::nextFrame()
@@ -45,12 +47,25 @@ void Dialog::nextFrame()
 void Dialog::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    m_background.render(painter, m_counter, m_bg_img, m_settings);
-    m_stickman.render(painter, m_counter, m_stickman_anim, m_settings);
+
+    m_map.getBackground().render
+            (painter,
+             m_counter,
+             m_map.getBackgroundImage(),
+             m_settings);
+
+    m_map.getStickman().render
+            (painter,
+             m_counter,
+             m_map.getStickmanAnimations(),
+             m_settings);
+
     m_counter++;
 }
 
 Dialog::~Dialog()
 {
     delete ui;
+    delete m_settings;
+    free(m_map.getStickmanAnimations());
 }

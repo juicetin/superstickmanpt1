@@ -17,15 +17,16 @@ SOURCES += main.cpp\
     background.cpp \
     stickman.cpp \
     settings.cpp \
-    constants.cpp
+    constants.cpp \
+    gamemap.cpp
 
 HEADERS  += dialog.h \
     background.h \
     stickman.h \
     settings.h \
-    constants.h
+    constants.h \
+    gamemap.h
 
 FORMS    += dialog.ui
 
-RESOURCES += \
-    stickman.qrc
+RESOURCES +=

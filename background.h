@@ -14,14 +14,15 @@
 class Background
 {
 public:
-    Background(int time) : m_time(time) {}
+    Background();
     ~Background();
 
     void render(QPainter &painter, unsigned int time, QPixmap bg, Settings * settings);
+    void loadBackgroundImage(QPixmap bg_img, Settings * settings);
 
 private:
-    Background();
     int m_time;
+    QPixmap m_bg_img;
 };
 
 #endif // BACKGROUND_H

@@ -10,7 +10,4 @@
         <file>mario7.png</file>
         <file>bg_img2.jpg</file>
     </qresource>
-    <qresource prefix="/Settings">
-        <file>config.ini</file>
-    </qresource>
 </RCC>

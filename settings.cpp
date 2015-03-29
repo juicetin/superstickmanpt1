@@ -15,8 +15,15 @@ Settings::Settings(std::string file_path, std::map<std::string, std::string> con
             lines[index++] = line;
         }
         inputStream.close();
+        processLines(lines, num_lines);
     }
-    processLines(lines, num_lines);
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("The config.ini file is missing. Please restore to allow program to run.");
+        msgBox.exec();
+        exit(0);
+    }
     delete[] lines;
 }
 
@@ -41,6 +48,11 @@ int Settings::numberOfLines(std::string fileName)
         numberOfLines++;
 
     return numberOfLines;
+}
+
+int Settings::stoi(std::string string)
+{
+    return strtol(string.c_str(),0,10);
 }
 
 std::string& Settings::getElement(std::string key)
