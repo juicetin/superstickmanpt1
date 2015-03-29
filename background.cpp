@@ -7,11 +7,11 @@ Background::Background()
 
 void Background::render (QPainter &painter, unsigned int time, QPixmap bg, Settings * settings)
 {
-    int height = std::atoi(settings->getElement(config_window_height).c_str());
-    int width = std::atoi(settings->getElement(config_window_width).c_str());
+    int height = std::atoi(settings->getElement(window_section, config_window_height).c_str());
+    int width = std::atoi(settings->getElement(window_section, config_window_width).c_str());
 
     //CONFIG VARIABLE
-    int velocity = std::atoi(settings->getElement(stickman_start_v).c_str());
+    int velocity = std::atoi(settings->getElement(stickman_section, stickman_start_v).c_str());
 
     //Determine movement of background using time elapsed
     int move = time * velocity;
@@ -26,7 +26,7 @@ void Background::render (QPainter &painter, unsigned int time, QPixmap bg, Setti
 void Background::loadBackgroundImage(QPixmap bg_img, Settings * settings)
 {
     //Load background image from config file into pixmap
-    bg_img.load(settings->getElement(settings_background_tag).c_str());
+    bg_img.load(settings->getElement(gameworld_section, settings_background_tag).c_str());
 }
 
 Background::~Background()

@@ -19,6 +19,10 @@ extern const char * stickman_anim_length;
 extern const char * file_extension;
 extern const char * image_type;
 
+extern const char * window_section;
+extern const char * gameworld_section;
+extern const char * stickman_section;
+
 extern const char * default_window_height;
 extern const char * default_window_width;
 extern const char * default_background_image_path;

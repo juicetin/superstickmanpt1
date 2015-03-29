@@ -2,11 +2,11 @@
 
 void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_anim[], Settings * settings)
 {
-    int height = std::atoi(settings->getElement(config_window_height).c_str());
+    int height = std::atoi(settings->getElement(window_section, config_window_height).c_str());
 
-    std::string size = settings->getElement(size_tag); //CONFIG VARIABLE
+    std::string size = settings->getElement(stickman_section, size_tag); //CONFIG VARIABLE
 
-    int start_pos = std::atoi(settings->getElement(stickman_start_x).c_str());  //CONFIG VARIABLE
+    int start_pos = std::atoi(settings->getElement(stickman_section, stickman_start_x).c_str());  //CONFIG VARIABLE
 
     int xcoord = start_pos;
     int ycoord;
@@ -45,7 +45,7 @@ void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_ani
         dimens = base_dimens + extra_size;
     }
 
-    int velocity = std::atoi(settings->getElement(stickman_start_v).c_str());    //CONFIG VARIABLE
+    int velocity = std::atoi(settings->getElement(stickman_section, stickman_start_v).c_str());    //CONFIG VARIABLE
     int chsprite_every_n_frames = 7-velocity/2;
     int frames_per_anim = 6;
 
@@ -54,18 +54,18 @@ void Stickman::render(QPainter &painter, unsigned int time, QPixmap stickman_ani
 
 void Stickman::loadSprites(QPixmap * stickman_anim, Settings * settings)
 {
-    int size = std::atoi(settings->getElement(stickman_anim_length).c_str());
+    int size = std::atoi(settings->getElement(stickman_section, stickman_anim_length).c_str());
 
     for (int i = 0; i < size; ++i)
     {
         std::stringstream mario_frame;
         mario_frame << i+1;
         std::string mario_file;
-        mario_file.append(settings->getElement(stickman_folder).c_str())
+        mario_file.append(settings->getElement(stickman_section, stickman_folder).c_str())
                 .append("/")
-                .append(settings->getElement(stickman_character).c_str())
+                .append(settings->getElement(stickman_section, stickman_character).c_str())
                 .append(mario_frame.str())
-                .append(settings->getElement(image_type).c_str());
+                .append(settings->getElement(stickman_section, image_type).c_str());
         stickman_anim[i].load(mario_file.c_str());
     }
 }

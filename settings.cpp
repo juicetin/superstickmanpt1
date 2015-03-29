@@ -76,23 +76,38 @@ void Settings::load(std::string file_path, std::map<std::string, std::string> co
 void Settings::processLines (std::string *lines, int numberOfLines)
 {
     //Set default values in case config.ini is missing values
-    m_config[config_window_height] = default_window_height;
-    m_config[config_window_width] = default_window_width;
-    m_config[settings_background_tag] = default_background_image_path;
-    m_config[size_tag] = default_size;
-    m_config[stickman_start_x] = default_start_xcoord;
-    m_config[stickman_folder] = default_player_sprite_folder;
-    m_config[stickman_character] = default_character;
-    m_config[stickman_anim_length] = default_animation_length;
-    m_config[image_type] = default_image_type;
-    m_config[stickman_start_v] = default_starting_velocity;
+    std::string window = window_section;    window.append("_");
+    m_config[window.append(config_window_height)] = default_window_height; window = window_section; window.append("_");
+    m_config[window.append(config_window_width)] = default_window_width;
+
+    std::string bg_tag = gameworld_section;
+    m_config[bg_tag.append(settings_background_tag)] = default_background_image_path;
+
+    std::string stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(size_tag)] = default_size; stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(stickman_start_x)] = default_start_xcoord; stickman = stickman_section; stickman.append("_");
+    m_config[stickman.append(stickman_folder)] = default_player_sprite_folder;  stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(stickman_character)] = default_character;  stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(stickman_anim_length)] = default_animation_length; stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(stickman_anim_length)] = default_image_type;   stickman = stickman_section;    stickman.append("_");
+    m_config[stickman.append(stickman_start_v)] = default_starting_velocity;    stickman = stickman_section;    stickman.append("_");
+
+
+    std::string current_header;
 
     for (int i = 0; i < numberOfLines; ++i)
     {
+        if (lines[i][0] == '[' && lines[i][lines[i].length()-1] == ']')
+            current_header = lines[i].substr(1, lines[i].length()-2).append("_");
+
+
         //Split string by "=" into key and value and store in map of configuration settings
-        if (!lines[i].empty() && lines[i][0] != '[' && lines[i][0] != ';')
+        else if (!lines[i].empty() && lines[i][0] != '[' && lines[i][0] != ';')
         {
-            std::string key = lines[i].substr(0, lines[i].find("="));
+            std::string temp_header = current_header;
+            std::string key = temp_header.append(lines[i].substr(0, lines[i].find("=")));
+
+
             std::string value = lines[i].substr(lines[i].find("=")+1, lines[i].length()-1);
             m_config[key] = value;
         }
@@ -111,9 +126,10 @@ int Settings::numberOfLines(std::string fileName)
     return numberOfLines;
 }
 
-std::string& Settings::getElement(std::string key)
+std::string& Settings::getElement(std::string section, std::string key)
 {
-    return m_config[key];
+    std::string full_key = section.append("_").append(key);
+    return m_config[full_key];
 }
 
 Settings::~Settings()

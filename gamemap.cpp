@@ -27,7 +27,7 @@ QPixmap * GameMap::getStickmanAnimations()
 
 void GameMap::loadBackgroundImage(Settings * settings)
 {
-    m_bg_img.load(settings->getElement(settings_background_tag).c_str());
+    m_bg_img.load(settings->getElement(gameworld_section, settings_background_tag).c_str());
 }
 
 GameMap::~GameMap()

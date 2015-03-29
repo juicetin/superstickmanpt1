@@ -17,16 +17,16 @@ Dialog::Dialog(QWidget *parent) :
     m_settings = new Settings(config_file, config);
 
     //Set size of game window
-    this->setFixedSize(std::atoi(m_settings->getElement(config_window_width).c_str()),
-                       std::atoi(m_settings->getElement(config_window_height).c_str()));
+    this->setFixedSize(std::atoi(m_settings->getElement(window_section, config_window_width).c_str()),
+                       std::atoi(m_settings->getElement(window_section, config_window_height).c_str()));
 
-    //Create game map and objects
+    //Create game map and objectsl
     Background background;
     Stickman stickman;
     QPixmap bg_img;
     QPixmap * stickman_animations;
     stickman_animations =
-            (QPixmap*)calloc(std::atoi(m_settings->getElement(stickman_anim_length).c_str()), sizeof(QPixmap));
+            (QPixmap*)calloc(std::atoi(m_settings->getElement(stickman_section, stickman_anim_length).c_str()), sizeof(QPixmap));
 
     m_map = GameMap::Builder().setBackground(background).
             setStickman(stickman).
