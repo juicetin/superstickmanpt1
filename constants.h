@@ -19,6 +19,16 @@ extern const char * stickman_anim_length;
 extern const char * file_extension;
 extern const char * image_type;
 
+extern const char * default_window_height;
+extern const char * default_window_width;
+extern const char * default_background_image_path;
+extern const char * default_size;
+extern const char * default_start_xcoord;
+extern const char * default_player_sprite_folder;
+extern const char * default_character;
+extern const char * default_animation_length;
+extern const char * default_image_type;
+extern const char * default_starting_velocity;
 
 #endif // CONSTANTS
 

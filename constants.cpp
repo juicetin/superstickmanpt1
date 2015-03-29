@@ -10,9 +10,21 @@ const char * size_giant = "giant";
 const char * images_folder = "Images/";
 const char * config_window_height = "window_height";
 const char * config_window_width = "window_width";
-const char * stickman_start_x = "start_x";
-const char * stickman_start_v = "start_v";
+const char * stickman_start_x = "starting_x_coordinate";
+const char * stickman_start_v = "starting_velocity";
 const char * stickman_folder = "player_sprites_folder";
 const char * stickman_character = "character";
 const char * stickman_anim_length = "animation_length";
 const char * image_type = "image_type";
+
+//Default config values
+const char * default_window_height = "700";
+const char * default_window_width = "1200";
+const char * default_background_image_path = "Images/bg_img.jpg";
+const char * default_size = "normal";
+const char * default_start_xcoord = "120";
+const char * default_player_sprite_folder = "Images";
+const char * default_character = "mario";
+const char * default_animation_length = "7";
+const char * default_image_type = ".png";
+const char *  default_starting_velocity = "7";

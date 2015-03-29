@@ -7,7 +7,7 @@
 #include <map>
 #include <QMessageBox>
 
-//#include "constants.h"
+#include "constants.h"
 
 class Settings
 {
@@ -18,7 +18,7 @@ public:
     int numberOfLines(std::string fileName);
     void processLines(std::string * lines, int numberOfLines);
     std::string& getElement(std::string key);
-    int stoi(std::string string);
+    void load(std::string file_path, std::map<std::string, std::string> config);
 
 private:
     std::string m_file_path;

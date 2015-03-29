@@ -17,16 +17,16 @@ Dialog::Dialog(QWidget *parent) :
     m_settings = new Settings(config_file, config);
 
     //Set size of game window - weird use of stoi due to lacking stoi function on my home machine
-    this->setFixedSize(m_settings->stoi(m_settings->getElement(config_window_width)),
-                       m_settings->stoi(m_settings->getElement(config_window_height)));
+    this->setFixedSize(std::atoi(m_settings->getElement(config_window_width).c_str()),
+                       std::atoi(m_settings->getElement(config_window_height).c_str()));
 
     //Create game map and objects
     Background background;
     Stickman stickman;
     QPixmap bg_img;
     QPixmap * stickman_animations;
-    stickman_animations = (QPixmap*)calloc(m_settings->
-                                           stoi(m_settings->getElement(stickman_anim_length)), sizeof(QPixmap));
+    stickman_animations =
+            (QPixmap*)calloc(std::atoi(m_settings->getElement(stickman_anim_length).c_str()), sizeof(QPixmap));
 
     m_map = GameMap::Builder().setBackground(background).
             setStickman(stickman).
